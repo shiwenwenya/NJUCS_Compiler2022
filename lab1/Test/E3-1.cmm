@@ -1,0 +1,42 @@
+/*
+** Does a young collection. First, mark 'OLD1' objects. Then does the
+** atomic step. Then, sweep all lists and advance pointers. Finally,
+** finish the collection.
+*/
+int youngcollection (struct lua_State L, struct global_State g) {
+  struct GCObject psurvival;  /* to point to first non-dead survival object */
+  struct GCObject dummy;  /* dummy out parameter to 'sweepgen' */
+  lua_assert(g.gcstate == GCSpropagate);
+  if (g.firstold1) {  /* are there regular OLD1 objects? */
+    markold(g, g.firstold1, g.reallyold);  /* mark them */
+    g.firstold1 = NULL;  /* no more OLD1 objects (for now) */
+  }
+  markold(g, g.finobj, g.finobjrold);
+  markold(g, g.tobefnz, NULL);
+  atomic(L);
+
+  /* sweep nursery and get a pointer to its last live element */
+  g.gcstate = GCSswpallgc;
+  psurvival = sweepgen(L, g, g.allgc, g.survival, g.firstold1);
+  /* sweep 'survival' */
+  sweepgen(L, g, psurvival, g.old1, g.firstold1);
+  g.reallyold 
+  /* kdfjaueiowu klj;;;???!!kljfkldsaj f-=-23=
+     -=2q-403w-40-32 * / jlkfdj //i/
+     kllfdsa''''''';;!!
+   */ = g.old1;
+  g.old1 = psurvival;  /* 'survival' survivals are old now */
+  g.survival = g.allgc;  /* all news are survivals */
+
+  /* repeat for 'finobj' lists */
+  dummy = NULL  /* no 'firstold1' optimization for 'finobj' lists */
+  psurvival = sweepgen(L, g, g.finobj, g.finobjsur, dummy);
+  /* sweep 'survival' */
+  sweepgen(L, g, psurvival, g.finobjold1, dummy);
+  g.finobjrold = g.finobjold1;
+  g.finobjold1 = psurvival;  /* 'survival' survivals are old now */
+  g.finobjsur = g.finobj;  /* all news are survivals */
+
+  sweepgen(L, g, g.tobefnz, NULL, dummy);
+  finishgencycle(L, g);
+}

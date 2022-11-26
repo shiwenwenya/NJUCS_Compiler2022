@@ -1,0 +1,25 @@
+int a1[100];
+int a2[100];
+
+int init(int a[100]) {
+  int i;
+  while (i < 100) {
+    a[i] = i;
+    i = i + 1;
+  }
+}
+
+int add(int a[100], int b[100]) {
+  int i = 0;
+  int res[100];
+  while (i < 100) {
+    res[i] = a[i] + b[i];
+    i += 1;
+  }
+}
+
+int main() {
+  init(a1);
+  init(a2);
+  add(a1, a2);
+}

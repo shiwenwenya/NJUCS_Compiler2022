@@ -1,0 +1,14 @@
+/*
+** Traverse a Lua closure, marking its prototype and its upvalues.
+** (Both can be NULL while closure is being created.)
+*/
+int traverseLclosure (struct global_State g, struct LClosure cl) {
+  int i = 0;
+  markobjectN(g, cl.p);  /* mark its prototype */
+  while (i < cl.nupvalues) {  /* visit its upvalues */
+    struct UpVal uv = cl.upvals[i];
+    markobjectN(g, uv);  /* mark upvalue */
+    i = i + 1;
+  }
+  return 1 + cl.nupvalues;
+}

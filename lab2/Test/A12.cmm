@@ -1,0 +1,47 @@
+struct Car {
+  int c_id;
+  float c_price;
+};
+
+struct House {
+  int h_id;
+  float h_price;
+};
+
+struct Person {
+  int pid;
+  float p_weight;
+  float p_height;
+  struct Car car[10];
+  struct House house;
+};
+
+struct Person people[100];
+
+int is_higher(struct Person hp1, struct Person hp2) {
+  return hp1.p_weight > hp2.p_weight;
+}
+
+int is_fatter(struct Person fp1, struct Person fp2) {
+  return fp1.p_height > fp2.p_height;
+}
+
+int is_bigger(struct Person bp1, struct Person bp2) {
+  return is_higher(bp1, bp2) && is_fatter(bp1, bp2);
+}
+
+int main() {
+  struct Person me;
+  struct Person alice;
+  struct Person bob;
+  int idx = 0;
+  int num = 3;
+
+  people[0] = me;
+  people[1] = alice;
+  people[me.p_weight] = bob;
+
+  me.pid = 0;
+  alice.pid = 1;
+  bob.pid = 2;
+}

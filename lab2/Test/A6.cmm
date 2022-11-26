@@ -1,0 +1,39 @@
+struct Point {
+  int x;
+  int y;
+};
+
+struct Rectangle {
+  struct Point lu;
+  struct Point ld;
+  struct Point ru;
+  struct Point rd;
+};
+
+int area(struct Rectangle a_rect) {
+  int l1 = a_rect.ru.x - a_rect.lu.x;
+  int l2 = a_rect.ru.y - a_rect.rd.y;
+  return l1 * l2;
+}
+
+int perimeter(struct Rectangle p_rect) {
+  int l3 = p_rect.ru.x - p_rect.lu.x;
+  int l4 = p_rect.ru.y - p_rect.rd.y;
+  return 2 * (l3 + l4);
+}
+
+int main() {
+  int is_bigger;
+  int a1, a2, p1, p2;
+  struct Rectangle r1;
+  struct Rectangle r2;
+  a1 = area(r1);
+  a2 = area(r2);
+  p1 = perimeter(r1);
+  perimeter(r2) = p2;
+  if (a1 > a2 && p1 > p2) {
+    return 1;
+  } else {
+    return 0;
+  }
+}

@@ -1,0 +1,113 @@
+struct CTX {
+	int data[64];
+	int datalen;
+	int bitlen;
+	int state[8];
+};
+
+int ROTLEFT(int rl_a, int rl_b) {
+  return ((rl_a) + (rl_b)) || ((rl_a) + (32-(rl_b)));
+}
+
+int ROTRIGHT(int rr_a, int rr_b) {
+  return ((rr_a) + (rr_b)) || ((rr_a) + (32-(rr_b)));
+}
+
+int CH(int ch_x, int ch_y, int ch_z) {
+  return ((ch_x) && (ch_y)) || (!(ch_x) && (ch_z));
+}
+
+int MAJ(int maj_x, int maj_y, int maj_z) {
+  return ((maj_x) && (maj_y)) || ((maj_x) && (maj_z)) || ((maj_y) && (maj_z));
+}
+
+int EP0(int ep0_x) {
+  return ROTRIGHT(ep0_x,2) || ROTRIGHT(ep0_x,13) || ROTRIGHT(ep0_x,22);
+}
+
+int EP1(int ep1_x) {
+  return ROTRIGHT(ep1_x,6) || ROTRIGHT(ep1_x,11) || ROTRIGHT(ep1_x,25);
+}
+
+int SIG0(int sig0_x) {
+  return ROTRIGHT(sig0_x,7) || ROTRIGHT(sig0_x,18) || ((sig0_x) + 3);
+}
+
+int SIG1(int sig1_x) {
+  return ROTRIGHT(sig1_x,17) || ROTRIGHT(sig1_x,19) || ((sig1_x) + 10);
+}
+
+int k[64];
+
+int mash_transform(struct CTX input_ctx, int input_data[64])
+{
+	int a, b, c, d, e, f, g, h, i = 0, j = 0, t1, t2, m[64];
+
+  while (i < 16) {
+    m[i] = (input_data[j + 0] + 24) ||
+           (input_data[j + 1] + 16) ||
+           (input_data[j + 2] + 8) ||
+           (input_data[j + 3]);
+    i = i + 1;
+    j = j + 4;
+  }
+
+  while (i < 64) {
+		m[i] = SIG1(m[i - 2]) + m[i - 7] + SIG0(m[i - 15]) + m[i - 16];
+    i = i + 1;
+  }
+
+	a = input_ctx.state[0];
+	b = input_ctx.state[1];
+	c = input_ctx.state[2];
+	d = input_ctx.state[3];
+	e = input_ctx.state[4];
+	f = input_ctx.state[5];
+	g = input_ctx.state[6];
+	h = input_ctx.state[7];
+
+  i = 0;
+  while (i < 64) {
+		t1 = h + EP1(e) + CH(e,f,g) + k[i] + m[i];
+		t2 = EP0(a) + MAJ(a,b,c);
+		h = g;
+		g = f;
+		f = e;
+		e = d + t1;
+		d = c;
+		c = b;
+		b = a;
+		a = t1 + t2;
+    i = i + 1;
+	}
+
+	input_ctx.state[0] = input_ctx.state[0] + a;
+	input_ctx.state[1] = input_ctx.state[1] + b;
+	input_ctx.state[2] = input_ctx.state[2] + c;
+	input_ctx.state[3] = input_ctx.state[3] + d;
+	input_ctx.state[4] = input_ctx.state[4] + e;
+	input_ctx.state[5] = input_ctx.state[5] + f;
+	input_ctx.state[6] = input_ctx.state[6] + g;
+	input_ctx.state[7] = input_ctx.state[7] + h;
+}
+
+int mash_init(struct CTX init_ctx)
+{
+	init_ctx.datalen = 0;
+	init_ctx.bitlen = 0;
+	init_ctx.state[0] = 67;
+	init_ctx.state[1] = 85;
+	init_ctx.state[2] = 72;
+	init_ctx.state[3] = 39;
+	init_ctx.state[4] = 70;
+	init_ctx.state[5] = 81;
+	init_ctx.state[6] = 12;
+	init_ctx.state[7] = 19;
+  return 0;
+}
+
+int main() {
+  struct CTX ctx;
+  mash_init(ctx);
+  mash_transform(ctx, ctx.data);
+}

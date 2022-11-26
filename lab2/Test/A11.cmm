@@ -1,0 +1,41 @@
+struct Person {
+  int pid;
+  float p_weight;
+  float p_height;
+
+  struct Car {
+    int c_id;
+    float c_price;
+  } cars[10];
+
+  struct {
+    int h_id;
+    float h_price;
+  } house;
+
+} people[100];
+
+
+struct Person me;
+struct Person alice;
+struct Person bob;
+
+int mix(struct Person p1, struct Person p2) {
+  struct Person mix_result;
+  if (p1.pid > p2.pid) {
+    mix_result = p1;
+  } else {
+    mix_result = p2;
+  }
+
+  mix_result.p_weight = p1.p_weight + p2.p_weight;
+  mix_result.p_height = p1.p_height + p2.p_height;
+  return 0;
+}
+
+
+int main() {
+  int me_alice = mix(me, alice);
+  int me_bob = mix(me, bob);
+  me_alice(me_bob);
+}

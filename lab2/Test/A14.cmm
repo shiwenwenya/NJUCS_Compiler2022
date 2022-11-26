@@ -1,0 +1,46 @@
+struct Food {
+  int f_type;
+  int is_good;
+  int prod_date;
+};
+
+int meet_type;
+int vege_type;
+int bread_type;
+int rubbish_type;
+
+int init_type() {
+  meet_type = 0;
+  vege_type = 1;
+  bread_type = 2;
+  rubbish_type = 3;
+}
+
+int eat_dish(struct Food f) {
+  if (f.f_type == rubbish_type) {
+    return -1;
+  } else if (f.is_good == 0) {
+    return -2;
+  } else if (f.prod_date < 0) {
+    return -3;
+  } else if (f.is_meet) {
+    return 1;
+  } else {
+    return 0;
+  }
+}
+
+int main() {
+  struct Food dishes[10];
+  int idx = 0;
+  int num = 10;
+
+  init_type();
+
+  while (idx < num) {
+    if (dishes[idx].is_good) {
+      eat_dish(dishes[idx]);
+    }
+    idx = idx + 1;
+  }
+}

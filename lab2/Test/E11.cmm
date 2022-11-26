@@ -1,0 +1,95 @@
+struct Complex {
+  float real;
+  float imag;
+};
+
+struct Complex mat[10][10];
+
+int ridx;
+int cidx;
+int row;
+int col;
+
+int prepare_params() {
+  ridx = 0;
+  cidx = 0;
+  row  = 10;
+  col  = 10;
+  return 0;
+}
+
+struct Complex add(struct Complex a_c1, struct Complex a_c2) {
+  struct Complex a_res;
+  a_res.real = a_c1.real + a_c2.real;
+  a_res.imag = a_c1.imag + a_c2.imag;
+  return a_res;
+}
+
+struct Complex sub(struct Complex s_c1, struct Complex s_c2) {
+  struct Complex s_res;
+  s_res.real = s_c1.real - s_c2.real;
+  s_res.imag = s_c1.imag - s_c2.imag;
+  return s_res;
+}
+
+int add_sub(struct Complex as_mat1[10][10],
+            struct Complex as_mat2[10][10],
+            int is_add) {
+  prepare_params();
+  while (ridx < row) {
+    while (cidx < col) {
+      if (is_add) {
+        mat[ridx][cidx] = add(as_mat1[ridx][cidx], as_mat2[ridx][cidx]);
+      } else {
+        mat[ridx][cidx] = sub(as_mat1[ridx][cidx], as_mat2[ridx][cidx]);
+      }
+      cidx = cidx + 1;
+    }
+    ridx = ridx + 1;
+  }
+  return 0;
+}
+
+int search(struct Complex s_c);
+
+int equals(struct Complex e_c1, struct Complex e_c2) {
+  return e_c1.real == e_c2.real && e_c1.imag == e_c2.imag;
+}
+
+int contains_helper(struct Complex ch_val, int ch_idx) {
+  if (ch_idx == 0) {
+    return equals(ch_val, mat[0][0]);
+  } else {
+    int tmp_ridx;
+    int tmp_cidx;
+    tmp_ridx = ch_idx;
+    tmp_cidx = 0;
+    while (tmp_cidx < col) {
+      if (equals(mat[tmp_ridx][tmp_cidx], ch_val)) {
+        return 1;
+      }
+      tmp_cidx = tmp_cidx + 1;
+    }
+    tmp_ridx = 0;
+    tmp_cidx = ch_idx;
+    while (tmp_ridx < row) {
+      if (equals(mat[tmp_ridx][tmp_cidx], ch_val)) {
+        return 1;
+      }
+      tmp_ridx = tmp_ridx + 1;
+    }
+    return contains_helper(ch_val, ch_idx - 1);
+  }
+}
+
+int contains(struct Complex c_val) {
+  prepare_params();
+  return contains_helper(c_val, row - 1);
+}
+
+struct Complex add(struct Complex inc_c);
+
+int main() {
+  struct Complex t_c;
+  contains(t_c);
+}

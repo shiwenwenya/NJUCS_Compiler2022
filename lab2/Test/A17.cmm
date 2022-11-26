@@ -1,0 +1,62 @@
+struct Node {
+  int ntype;
+  int i_value;
+  float f_value;
+};
+
+struct NodeList {
+  int len;
+  int capacity;
+  struct Node nodes[100];
+} list;
+
+int lidx;
+struct Node empty_node;
+
+int init() {
+  lidx = 0;
+  list.len = 0;
+  list.capacity = 100;
+  empty_node.ntype = -1;
+  while (lidx < list.capacity) {
+    list.nodes[lidx] = empty_node;
+    lidx = lidx + 1;
+  }
+}
+
+struct NodeList max(struct NodeList l1, struct NodeList l2) {
+  int min_cap;
+  lidx = 0;
+  if (l1.capacity > l2.capacity) {
+    min_cap = l2.capacity;
+  } else {
+    min_cap = l1.capacity;
+  }
+  while (lidx < min_cap) {
+    struct Node n1 = l1.nodes[lidx];
+    struct Node n2 = l2.nodes[lidx];
+    if (n1.ntype == 0 && n2.ntype == 0) {
+      if (n1.i_value > n2.i_value) {
+        list.nodes[lidx] = n1;
+      } else {
+        list.nodes[lidx] = n2;
+      }
+    } else if (n1.ntype == 1 && n2.ntype == 1) {
+      if (n1.f_value > n2.f_value) {
+        list.nodes[lidx] = n1;
+      } else {
+        list.nodes[lidx] = n2;
+      }
+    } else {
+      struct ListNode dummy;
+      list.nodes[lidx] = dummy;
+    }
+    lidx = lidx + 1;
+  }
+}
+
+int main() {
+  struct NodeList list1;
+  struct NodeList list2;
+  max(list1, list2);
+}

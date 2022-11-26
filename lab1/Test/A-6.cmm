@@ -1,0 +1,15 @@
+struct Car {
+  int color;
+  float weight;
+};
+
+struct Fee {
+  Car car;
+  int count;
+};
+
+int main() {
+  struct Car car;
+  car.color = 0;
+  car.weight = 1.111;
+}

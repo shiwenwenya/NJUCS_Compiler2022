@@ -1,0 +1,9 @@
+struct {
+  int x;
+  int y;
+  int z;
+} s1, s2;
+
+int foo() {
+  struct s int;
+}

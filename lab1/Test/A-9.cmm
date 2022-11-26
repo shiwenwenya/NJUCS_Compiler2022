@@ -1,0 +1,25 @@
+int turn;
+int flag[2];
+
+int doSth() {
+  int i = 0;
+  while (i < 42) {
+    i = i + 1;
+  }
+}
+
+int t1() {
+  turn = 1;
+  while (flag[1] == 1 && turn == 1) {
+
+  }
+  doSth();
+  flag[0] = 0;
+}
+
+int t2() {
+  turn = 0; 
+  while (flag[0] == 1 && turn == 0);
+  doSth();
+  flag[1] = 0;
+}

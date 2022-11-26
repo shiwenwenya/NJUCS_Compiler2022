@@ -1,0 +1,44 @@
+struct Hammer {
+  int h_no;
+  int h_id;
+  float h_weight;
+};
+
+struct Spoon {
+  int s_no;
+  int s_id;
+  float s_weight;
+};
+
+struct HammerSpoon {
+  struct Hammer hammer;
+  struct Spoon spoon;
+};
+
+struct HammerSpoon fuse(struct Hammer h, struct Spoon s) {
+  struct HammerSpoon hs;
+  hs.hammer = h;
+  hs.spoon = s;
+}
+
+int equal(struct Hammer h1, struct Hammer h2) {
+  if (h1.h_id == h2.h_id) {
+    return 1;
+  } else {
+    return 0;
+  }
+}
+
+int equal(struct Spoon s1, struct Spoon s2) {
+  if (s1.s_id == s2.s_id) {
+    return 1;
+  } else {
+    return 0;
+  }
+}
+
+int main() {
+  struct Hammer hh;
+  struct Spoon ss;
+  fuse(hh, ss);
+}

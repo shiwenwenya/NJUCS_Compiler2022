@@ -1,0 +1,54 @@
+FUNCTION main : 
+v2 := #0
+v3 := #0
+v4 := #0
+v5 := #0
+v6 := #1
+v7 := #1
+READ t1
+v1 := t1
+IF v1 > #0 GOTO label1
+t2 := #0 - #1
+WRITE t2
+t3 := #0
+RETURN #0
+LABEL label1 : 
+LABEL label2 : 
+IF v3 >= v1 GOTO label3
+t4 := v2 + #1
+v2 := t4
+t5 := v3 + v2
+v3 := t5
+GOTO label2
+LABEL label3 : 
+t7 := v3 - v2
+t6 := v1 - t7
+v4 := t6
+v5 := v2
+WRITE v5
+t8 := #0
+WRITE v4
+t9 := #0
+v3 := #0
+LABEL label4 : 
+IF v3 >= v4 GOTO label5
+t10 := v6 * v5
+v6 := t10
+t11 := v5 - #1
+v5 := t11
+t12 := v3 + #1
+v3 := t12
+GOTO label4
+LABEL label5 : 
+LABEL label6 : 
+IF v4 <= #0 GOTO label7
+t13 := v7 * v4
+v7 := t13
+t14 := v4 - #1
+v4 := t14
+GOTO label6
+LABEL label7 : 
+t15 := v6 / v7
+WRITE t15
+t16 := #0
+RETURN #0

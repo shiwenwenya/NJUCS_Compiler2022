@@ -1,0 +1,7 @@
+int foo() {
+  int i, j;
+  i = 0;
+  j = (i * 5 + 42) / 23;
+  float f;
+  return i;
+}

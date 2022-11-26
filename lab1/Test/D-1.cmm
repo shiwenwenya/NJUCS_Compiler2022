@@ -1,0 +1,5 @@
+int main() {
+  int i = 122 * 0x34;
+  int j = i * i + 182 / i;
+  int k = 0323 + j;
+}

@@ -1,0 +1,54 @@
+struct Atomic {
+  int tag;
+  int temperature;
+  int humidity;
+};
+
+int tag_water;
+int tag_fire;
+int tag_soil;
+int tag_gas;
+
+int tempe_hot;
+int tempe_cold;
+int humid_dry;
+int humid_wet;
+
+struct Atomic createAtomic(int ato_tag);
+
+int init_const() {
+  tag_water = 0;
+  tag_fire  = 1;
+  tag_soil  = 2;
+  tag_gas   = 3;
+
+  tempe_hot  = 4;
+  tempe_cold = 5;
+  humid_dry  = 6;
+  humid_wet  = 7;
+  return 0;
+}
+
+struct Atomic createAtomic(int ato_tag) {
+  struct Atomic ato_result;
+  if (ato_tag == tag_water) {
+    ato_result.temperature = tempe_cold;
+    ato_result.humidity = humid_wet;
+  } else if (ato_tag == tag_fire) {
+    ato_result.temperature = tempe_hot;
+    ato_result.humidity = humid_dry;
+  } else if (ato_tag == tag_soil) {
+    ato_result.temperature = tempe_cold;
+    ato_result.humidity = humid_dry;
+  } else {
+    ato_result.temperature = tempe_hot;
+    ato_result.humidity = humid_wet;
+  }
+  return ato_result;
+}
+
+int init_const();
+
+int main() {
+  struct Atomic a = createAtomic(1);
+}

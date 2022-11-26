@@ -1,0 +1,37 @@
+struct Node {
+  int ntype;
+  int i_value;
+  float f_value;
+};
+
+struct NodeList {
+  int len;
+  int capacity;
+  struct Node nodes[100];
+} list;
+
+int lidx;
+struct Node empty_node;
+
+int init() {
+  lidx = 0;
+  list.len = 0;
+  list.capacity = 100;
+  empty_node.ntype = -1;
+  while (lidx < list.capacity) {
+    list.nodes[lidx] = empty_node;
+    lidx = lidx + 1;
+  }
+}
+
+int same_len(struct NodeList l1, struct NodeList l2) {
+  int Node = l1.len;
+  int node = l2.len;
+  return Node == node;
+}
+
+int main() {
+  struct NodeList list1;
+  struct NodeList list2;
+  same_len(list1, list2);
+}

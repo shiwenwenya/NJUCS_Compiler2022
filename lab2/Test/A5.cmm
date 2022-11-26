@@ -1,0 +1,35 @@
+struct Hammer {
+  int h_id;
+  int h_no;
+  float h_weight;
+};
+
+struct {
+  int hc_num;
+  struct Hammer hammer_array[100];
+  int hammer_status[100];
+} hammers;
+
+int is_available() {
+  return hammers.hc_num > 0;
+}
+
+int get_status(int idx) {
+  return hammers.hammer_status[idx];
+}
+
+struct Hammer fetch() {
+  struct Hammer result;
+  if (is_available()) {
+    int h_idx = hammers.hc_num - 1;
+    hammers.hammer_status[h_idx] = 0;
+    result = hammers.hammer_array[h_idx];
+    hammers.hc_num = hammers.hc_num - 1;
+  }
+  return result;
+}
+
+int main() {
+  int i;
+  i = fetch();
+}

@@ -1,0 +1,40 @@
+int main() {
+  bin2dec(1001001);
+  dec2bin(1234567);
+}
+
+int rem(int a, int b) {
+  return a - a / b * b;
+}
+
+int bin2dec(int n) {
+  int dec = 0, i = 0, rem;
+  while (n != 0) {
+    rem = rem(n, 10);
+    n = n / 10;
+    dec = dec + rem * pow(2, i);
+    i = i + 1;
+  }
+  return dec;
+}
+
+int dec2bin(int n) {
+  if (n <= 1)
+    return n;
+  else {
+    dec2bin(n / 2);
+    write(rem(n, 2));
+  }
+}
+
+int cal() {
+  int z_x = 0;
+  while (1 * 2 + (2 - 3 * 4 )) {
+    if (a > b)
+      dec2bin(a);
+    else {
+      int z_x = x / (y * y - z);
+      bin2dec(b);
+    }
+  }
+}

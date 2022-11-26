@@ -1,0 +1,35 @@
+struct Person {
+  int pid;
+  float p_weight;
+  float p_height;
+
+  struct Car {
+    int c_id;
+    float c_price;
+  } cars[10];
+
+  struct {
+    int h_id;
+    float h_price;
+  } house;
+
+} people[100];
+
+struct Person me;
+struct Person alice;
+struct Person bob;
+
+int main() {
+  struct Group {
+    int gid;
+    struct Person {
+      int name;
+    } p;
+  } group;
+
+  if (group.gid > 0) {
+    people[0] = me;
+  } else {
+    people[0] = bob;
+  }
+}

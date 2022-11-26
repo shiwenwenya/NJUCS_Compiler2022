@@ -1,0 +1,94 @@
+int lshift(int ls_num, int ls_len) {
+  int ls_idx = 0;
+  while (ls_idx < ls_len) {
+    ls_num = ls_num * 2;
+    ls_idx = ls_idx + 1;
+  }
+  return ls_num;
+}
+
+int rshift(int rs_num, int rs_len) {
+  int rs_idx = 0;
+  while (rs_idx < rs_len) {
+    rs_num = rs_num / 2;
+    rs_idx = rs_idx + 1;
+  }
+  return rs_num;
+}
+
+int fix16_abs(int abs_in) {
+  if(abs_in == lshift(1, 31)) {
+    return lshift(1, 31);
+  } else {
+    if (abs_in >= 0) {
+      return abs_in;
+    } else {
+      return -abs_in;
+    }
+  }
+}
+
+int fix16_sqrt(int sqrt_in)
+{
+  int neg;
+  int num = fix16_abs(sqrt_in);
+  int result = 0;
+  int bit;
+  int n;
+
+  if (sqrt_in >= 0) {
+    neg = 0;
+  } else {
+    neg = 1;
+  }
+
+  if (rshift(num, 20))
+    bit = lshift(1, 30);
+  else
+    bit = lshift(1, 18);
+
+  while (bit > num)
+    bit = rshift(bit, 2);
+
+  while (n < 2) {
+    while (bit) {
+      if (num >= result + bit) {
+        num = num - (result + bit);
+        result = rshift(result,  1) + bit;
+      } else {
+        result = rshift(result, 1);
+      }
+      bit = rshift(bit, 2);
+    }
+
+    if (n == 0) {
+      if (num > 65535) {
+        num = num - result;
+        num  = lshift(num, 16) - lshift(1, 15);
+        result = lshift(result, 16) + lshift(1, 15);
+      } else {
+        num = lshift(num, 16);
+        result = lshift(result, 16);
+      }
+      bit = lshift(1, 14);
+    }
+    n = n + 1;
+  }
+
+  if (num > result) {
+    result = result + 1;
+  }
+
+  if (neg) {
+    return -result;
+  } else {
+    return result;
+  }
+}
+
+int main() {
+  int i1 = lshift(1, 8) + lshift(1, 7);
+  int i2 = lshift(2, 8) + lshift(2, 7);
+  int i3 = i1 + i2;
+  int s_res = fix16_sqrt(i3);
+}

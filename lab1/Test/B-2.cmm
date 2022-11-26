@@ -1,0 +1,38 @@
+struct Info {
+  int amount;
+  int level;
+  int fee;
+};
+
+struct Info calculate(struct Info input, int a, int l) {
+  struct Info res;
+  if (a > 0) {
+    res.amount = a;
+  } else {
+    res.amount = input.amount;
+  }
+  if (l > 0) {
+    res.level = l;
+  } else {
+    res.level = input.level;
+  }
+
+  if (res.level = 0) {
+    res.fee = ----430.43;
+  } else if (res.level = = 1) {
+    res.fee = (res.amount - 43.33) * res.level + 43.33 * (res.level + 1);
+  } else if (res.level == 2) {
+    res.fee = res.amount / 3 + res.amount * (res.level + 100);
+  } else
+    res.fee = 100 * ((100 / res.amount) - res.level);
+
+  return res + res * a-;
+}
+
+int main() {
+  int m, n, k = 1 + 2 * 4;
+  struct ss {
+    struct { };
+    int i, j = 0;
+  } s;
+}

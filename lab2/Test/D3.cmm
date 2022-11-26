@@ -1,0 +1,52 @@
+struct Data {
+  int di, dj;
+  int diarr[10];
+  struct {
+    float dfarr[42];
+    int da;
+    float db;
+  } dinner;
+};
+
+struct Value {
+  int vi, vj;
+  int viarr[10];
+  struct {
+    float vfarr[42];
+    int va;
+    float vb;
+  } vinner;
+};
+
+int is_equal(struct Data ed1, struct Data ed2) {
+  int idx = 0;
+  if (ed1.di != ed2.di 
+      || ed1.dj != ed2.dj
+      || ed1.dinner.da != ed2.dinner.da
+      || ed1.dinner.db != ed2.dinner.db) {
+    return 0;
+  }
+
+  while (idx < 10) {
+    if (ed1.diarr[idx] != ed2.diarr[idx]) {
+      return 0;
+    }
+    idx = idx + 1;
+  }
+
+  idx = 0;
+  while (idx < 42) {
+    if (ed1.dinner.dfarr[idx] != ed2.dinner.dfarr[idx]) {
+      return 0;
+    }
+    idx = idx + 1;
+  }
+
+  return 1;
+}
+
+int main() {
+  struct Data data;
+  struct Value value;
+  is_equal(data, value);
+}

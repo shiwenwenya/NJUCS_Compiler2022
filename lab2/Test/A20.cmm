@@ -1,0 +1,105 @@
+struct Apple {
+  int a_color;
+  float a_size;
+  float a_price;
+};
+
+struct Banana {
+  float b_size;
+  float b_price;
+};
+
+struct Orange {
+  float o_size;
+  float o_weight;
+  float o_price;
+};
+
+float sum_price(struct Apple a1, struct Apple a2) {
+  return a1.a_price + a2.a_price;
+}
+
+struct Bag {
+  struct Apple apples[10];
+  struct Banana bananas[10];
+  struct Orange oranges[10];
+  struct {
+    float t_size;
+    float t_price;
+  } tag;
+} bags[10];
+
+int sum_weight() {
+  int oidx = 0;
+  int iidx = 0;
+  while (oidx < 10) {
+    iidx = 0;
+    while (iidx < 10) {
+      bags[oidx].tag.t_price = bags[oidx].tag.t_price
+        + bags[oidx].apples[iidx].a_price
+        + bags[oidx].bananas[iidx].b_price
+        + bags[oidx].oranges[iidx].o_price;
+      iidx = iidx + 1;
+    }
+    oidx = oidx + 1;
+  }
+}
+
+int main() {
+  struct Apple apple1;
+  struct Apple apple2;
+  float psum = sum_price(apple1);
+  sum_weight();
+}
+
+[!] testing 'A-20'
+[fail] 'A-20'
+given stdout in test 'A-20':
+struct Apple {
+  int a_color;
+  float a_size;
+  float a_price;
+};
+
+struct Banana {
+  float b_size;
+  float b_price;
+};
+
+struct Orange {
+  float o_size;
+  float o_weight;
+  float o_price;
+};
+
+struct Bag {
+  struct Apple apples[10];
+  struct Banana bananas[10];
+  struct Orange oranges[10];
+  struct {
+    float t_size;
+    float t_price;
+  } tag;
+  int apples;
+} bags[10];
+
+int main() {
+  struct Apple a;
+  struct Banana b;
+  struct Orange o;
+  float choose_size;
+
+  if (a.a_price < b.b_price) {
+    if (a.a_price < o.o_price) {
+      choose_size = a.a_size;
+    } else {
+      choose_size = o.o_size;
+    }
+  } else {
+    if (b.b_price < o.o_price) {
+      choose_size = b.b_size;
+    } else {
+      choose_size = o.o_price;
+    }
+  }
+}

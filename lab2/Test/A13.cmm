@@ -1,0 +1,50 @@
+struct Food {
+  int f_type;
+  int is_good;
+  int prod_date;
+};
+
+int meet_type;
+int vege_type;
+int bread_type;
+int rubbish_type;
+
+struct Food meet;
+struct Food vege;
+struct Food bread;
+struct Food rubbish;
+
+struct Food make_dish(struct Food f1, struct Food f2) {
+  struct Food dish;
+  dish.f_type = rubbish_type;
+  
+  if (f1.f_type != meet_type && f2.f_type != meet_type) {
+    return dish;
+  } else if (f1.f_type == meet_type || f2.f_type == meet_type) {
+    dish.f_type = meet_type;
+    return dish;
+  } else {
+    dish.f_type = bread_type;
+  }
+}
+
+int main() {
+  meet_type = 0;
+  vege_type = 1;
+  bread_type = 2;
+  rubbish_type = 3;
+
+  meet.f_type = meet_type;
+  vege.f_type = vege_type;
+  bread.f_type = bread_type;
+
+  if (bread.f_type.is_good) {
+    struct Food dishes[10];
+    int idx = 0;
+    int num = 10;
+    while (idx < num) {
+      dishes[idx] = make_dish(dishes[idx], dishes[0]);
+      idx = idx + 1;
+    }
+  }
+}

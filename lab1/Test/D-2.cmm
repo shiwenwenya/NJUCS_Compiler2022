@@ -1,0 +1,6 @@
+int main() {
+  float f_1 = 0.232342;
+  float f_2 = .23e-10;
+  float f_3 = f_1 * f_2 - f_1;
+  f_1 = f_1 * 32.E-12;
+}

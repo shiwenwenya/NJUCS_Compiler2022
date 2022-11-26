@@ -1,0 +1,38 @@
+struct Dog {
+  int d_type;
+  int d_age;
+  float d_height;
+  float d_weight;
+};
+
+struct Cat {
+  int c_type;
+  int c_age;
+  float c_height;
+  float c_weight;
+};
+
+struct Fish {
+  int f_type;
+  int f_age;
+  float f_height;
+  float f_weight;
+};
+
+int main() {
+  int is_rich;
+  struct {
+    struct Dog d_pet;
+    struct Cat c_pet;
+    struct Fish f_pet;
+    int age = 10;
+    struct {
+      float price;
+    } house;
+  } p;
+
+  if (p.d_pet.d_age > 0 && p.c_pet.c_age > 0
+      && p.f_pet.f_age > 0 && p.house.price > 0) {
+    is_rich = 0;
+  }
+}

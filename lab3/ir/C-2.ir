@@ -1,0 +1,127 @@
+FUNCTION bit_and : 
+PARAM v1
+PARAM v2
+IF v1 != #0 GOTO label1
+RETURN #0
+GOTO label2
+LABEL label1 : 
+RETURN v2
+LABEL label2 : 
+FUNCTION bit_or : 
+PARAM v5
+PARAM v6
+IF v5 != #0 GOTO label3
+RETURN v6
+GOTO label4
+LABEL label3 : 
+RETURN #1
+LABEL label4 : 
+FUNCTION bit_not : 
+PARAM v9
+IF v9 != #0 GOTO label5
+RETURN #1
+GOTO label6
+LABEL label5 : 
+RETURN #0
+LABEL label6 : 
+FUNCTION mod : 
+PARAM v11
+PARAM v12
+t3 := v11 / v12
+t2 := t3 * v12
+t1 := v11 - t2
+RETURN t1
+FUNCTION and : 
+PARAM v17
+PARAM v18
+v19 := #32
+DEC v20 128
+DEC v21 128
+DEC v22 128
+v23 := #0
+v24 := #0
+IF v17 <= #0 GOTO label8
+IF v18 > #0 GOTO label7
+LABEL label8 : 
+RETURN #0
+LABEL label7 : 
+LABEL label9 : 
+IF v23 >= v19 GOTO label10
+t4 := v23 * #4
+t5 := &v20 + t4
+*t5 := #0
+t6 := v23 * #4
+t7 := &v21 + t6
+*t7 := #0
+t8 := v23 * #4
+t9 := &v22 + t8
+*t9 := #0
+t10 := v23 + #1
+v23 := t10
+GOTO label9
+LABEL label10 : 
+v23 := #0
+LABEL label11 : 
+IF v23 >= v19 GOTO label12
+t11 := v23 * #4
+t12 := &v20 + t11
+ARG #2
+ARG v17
+t13 := CALL mod
+*t12 := t13
+t14 := v23 * #4
+t15 := &v21 + t14
+ARG #2
+ARG v18
+t16 := CALL mod
+*t15 := t16
+t17 := v17 / #2
+v17 := t17
+t18 := v18 / #2
+v18 := t18
+t19 := v23 + #1
+v23 := t19
+GOTO label11
+LABEL label12 : 
+v23 := #0
+LABEL label13 : 
+IF v23 >= v19 GOTO label14
+t20 := v23 * #4
+t21 := &v22 + t20
+t23 := v23 * #4
+t24 := &v20 + t23
+t25 := v23 * #4
+t26 := &v21 + t25
+ARG *t26
+ARG *t24
+t22 := CALL bit_and
+*t21 := t22
+t27 := v23 + #1
+v23 := t27
+GOTO label13
+LABEL label14 : 
+t28 := v19 - #1
+v23 := t28
+LABEL label15 : 
+IF v23 < #0 GOTO label16
+t30 := v24 * #2
+t31 := v23 * #4
+t32 := &v22 + t31
+t29 := t30 + *t32
+v24 := t29
+t33 := v23 - #1
+v23 := t33
+GOTO label15
+LABEL label16 : 
+RETURN v24
+FUNCTION main : 
+READ t34
+v73 := t34
+READ t35
+v74 := t35
+ARG v74
+ARG v73
+t36 := CALL and
+WRITE t36
+t37 := #0
+RETURN #0

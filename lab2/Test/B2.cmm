@@ -1,0 +1,73 @@
+struct Matrix {
+  int val[10][10];
+};
+
+int row;
+int col;
+int row_idx;
+int col_idx;
+
+int init_args() {
+  row_idx = 0;
+  col_idx = 0;
+  row = 10;
+  col = 10;
+  return 0;
+}
+
+int init_args() {
+}
+
+struct Matrix add(struct Matrix am1, struct Matrix am2) {
+  struct Matrix a_res;
+  init_args();
+  while (row_idx < row) {
+    while (col_idx < col) {
+      a_res.val[row_idx][col_idx] = am1.val[row_idx][col_idx]
+          + am2.val[row_idx][col_idx];
+      col_idx = col_idx + 1;
+    }
+    row_idx = row_idx + 1;
+  }
+  return a_res;
+}
+
+struct Matrix sub(struct Matrix sm1, struct Matrix sm2) {
+  struct Matrix s_res;
+  init_args();
+  while (row_idx < row) {
+    while (col_idx < col) {
+      s_res.val[row_idx][col_idx] = sm1.val[row_idx][col_idx]
+          + sm2.val[row_idx][col_idx];
+      col_idx = col_idx + 1;
+    }
+    row_idx = row_idx + 1;
+  }
+  return s_res;
+}
+
+struct Matrix mul(struct Matrix mm1, struct Matrix mm2) {
+  struct Matrix m_res;
+  init_args();
+  while (row_idx < row) {
+    while (col_idx < col) {
+      int cnt = 0;
+      int num = row;
+      m_res.val[row_idx][col_idx][0] = 0;
+      while (cnt < num) {
+        m_res.val[row_idx][col_idx] = m_res.val[row_idx][col_idx]
+            + mm1.val[row_idx][cnt] * mm2.val[cnt][col_idx];
+      }
+      col_idx = col_idx + 1;
+    }
+    row_idx = row_idx + 1;
+  }
+  return m_res;
+}
+
+int main() {
+  struct Matrix m1;
+  struct Matrix m2;
+  struct Matrix m3 = m1(add(m1, m2), sub(m1, m2));
+  struct Matrix Matrix = mul(m1, m2);
+}

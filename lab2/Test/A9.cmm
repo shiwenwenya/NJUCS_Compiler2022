@@ -1,0 +1,38 @@
+struct Point {
+  int x;
+  int y;
+  int z;
+};
+
+struct Point points[100];
+
+float sqrt(int f) {
+  return 0.0;
+}
+
+float dist(struct Point p1, struct Point p2) {
+  int diff_x_sqr = (p2.x - p1.x) * (p2.x - p1.x);
+  int diff_y_sqr = (p2.y - p1.y) * (p2.y - p1.y);
+  int diff_z_sqr = (p2.z - p1.z) * (p2.z - p1.z);
+  int diff_sqr_sum = diff_x_sqr + diff_y_sqr + diff_z_sqr;
+  return sqrt(diff_sqr_sum);
+}
+
+float norm(struct Point p) {
+  struct Point orig;
+  orig.x = 0;
+  orig.y = 0;
+  orig.z = 0;
+  return dist(p, orig);
+}
+
+int main() {
+  int flag1;
+  int flag2;
+
+  if (flag1 > 1) {
+    dist(points[0], points[1]);
+  } else {
+    norm(points);
+  }
+}

@@ -1,0 +1,27 @@
+struct Point {
+  int x;
+  int y;
+  int z;
+};
+
+int inner_product(struct Point ipp1, struct Point ipp2) {
+  return ipp1.x * ipp2.x + ipp1.y + ipp2.y;
+}
+
+int add(struct Point ap1, struct Point ap2) {
+  struct Point a_res;
+  a_res.x = ap1.x + ap2.x;
+  a_res.y = ap1.y + ap2.y;
+  return a_res;
+}
+
+int main() {
+  struct Point point1;
+  struct Point point2;
+
+  point1.x = 0;
+  point1.y = 1;
+  point1.z = 2;
+
+  point2 = point1;
+}

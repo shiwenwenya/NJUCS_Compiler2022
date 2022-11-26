@@ -1,0 +1,38 @@
+struct Point {
+  int x;
+  int y;
+  int z;
+};
+
+int is_value_near(int vn1, int vn2) {
+  if (vn1 < vn2) {
+    return (vn2 - vn1) < 10;
+  } else {
+    return (vn1 - vn2) < 10;
+  }
+}
+
+int is_near(struct Point np1, struct Point np2) {
+  int is_x_near = is_value_near(np1.x, np2.x);
+  int is_y_near = is_value_near(np1.y, np2.y);
+  int is_z_near = is_value_near(np1.z, np2.z);
+  return is_x_near && is_y_near && is_z_near;
+}
+
+int is_equal(struct Point ep1, struct Point ep2) {
+  return ep1.x == ep2.x && ep1.y == ep2.y && ep1.z == ep2.z;
+}
+
+struct Point add(struct Point ap1, struct Point ap2) {
+  struct Point p;
+  p.x = ap1.x + ap2.x;
+  p.y = ap1.y + ap2.y;
+  p.z = ap1.z + ap2;
+  return p;
+}
+
+int main() {
+  struct Point pp1;
+  struct Point pp2;
+  is_equal(pp1, pp2);
+}

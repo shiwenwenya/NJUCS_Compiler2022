@@ -1,0 +1,13 @@
+struct Hammer {
+  int h_id;
+  int h_no;
+  float h_weight;
+};
+
+int main() {
+  struct Hammer h;
+  h.h_id = 0;
+  h.h_no = 2;
+  h.h_weight = 2.2;
+  return _i;
+}

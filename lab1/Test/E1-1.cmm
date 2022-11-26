@@ -1,0 +1,9 @@
+int main() {
+  int b10 = 0655378;
+  int b15 = 16777216 + b10 / -0xfd;
+  int b18 = -0x7fffg;
+  int b20 = -0x1ffffd;
+  int b21 = -0312 + 0xdead;
+  int b23 = 065536;
+  int b24 = -0xffffff;
+}

@@ -1,0 +1,84 @@
+FUNCTION fact : 
+PARAM v1
+IF v1 > #0 GOTO label1
+RETURN #1
+GOTO label2
+LABEL label1 : 
+t3 := v1 - #1
+ARG t3
+t2 := CALL fact
+t1 := t2 * v1
+RETURN t1
+LABEL label2 : 
+FUNCTION isqrt : 
+PARAM v5
+v6 := #0
+LABEL label3 : 
+IF v6 >= v5 GOTO label4
+t4 := v6 * v6
+IF t4 > v5 GOTO label5
+t6 := v6 + #1
+t7 := v6 + #1
+t5 := t6 * t7
+IF t5 <= v5 GOTO label5
+RETURN v6
+LABEL label5 : 
+t8 := v6 + #1
+v6 := t8
+GOTO label3
+LABEL label4 : 
+t9 := #0 - #1
+RETURN t9
+FUNCTION mod : 
+PARAM v18
+PARAM v19
+IF v18 < #0 GOTO label7
+IF v19 > #0 GOTO label6
+LABEL label7 : 
+t10 := #0 - #1
+RETURN t10
+GOTO label8
+LABEL label6 : 
+t13 := v18 / v19
+t12 := t13 * v19
+t11 := v18 - t12
+RETURN t11
+LABEL label8 : 
+FUNCTION is_prime : 
+PARAM v26
+v27 := #2
+ARG v26
+t14 := CALL isqrt
+v28 := t14
+LABEL label9 : 
+IF v27 > v28 GOTO label10
+ARG v27
+ARG v26
+t15 := CALL mod
+IF t15 != #0 GOTO label11
+RETURN #0
+LABEL label11 : 
+t16 := v27 + #1
+v27 := t16
+GOTO label9
+LABEL label10 : 
+RETURN #1
+FUNCTION main : 
+v36 := #2
+READ t17
+v37 := t17
+LABEL label12 : 
+ARG v37
+t18 := CALL fact
+IF v36 >= t18 GOTO label13
+ARG v36
+t19 := CALL is_prime
+IF t19 == #0 GOTO label14
+WRITE v36
+t20 := #0
+LABEL label14 : 
+t21 := v36 + #1
+v36 := t21
+GOTO label12
+LABEL label13 : 
+RETURN #0

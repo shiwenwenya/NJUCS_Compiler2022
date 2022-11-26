@@ -1,0 +1,73 @@
+FUNCTION main : 
+READ t1
+v1 := t1
+READ t2
+v2 := t2
+READ t3
+v3 := t3
+READ t4
+v4 := t4
+READ t5
+v5 := t5
+READ t6
+v6 := t6
+READ t7
+v7 := t7
+READ t8
+v8 := t8
+IF v1 == v3 GOTO label2
+IF v2 == v4 GOTO label2
+IF v5 == v7 GOTO label2
+IF v6 != v8 GOTO label1
+LABEL label2 : 
+t9 := #0 - #1
+WRITE t9
+t10 := #0
+GOTO label3
+LABEL label1 : 
+IF v1 >= v3 GOTO label4
+v9 := v1
+v10 := v3
+GOTO label5
+LABEL label4 : 
+v9 := v3
+v10 := v1
+LABEL label5 : 
+IF v2 >= v4 GOTO label6
+v11 := v4
+v12 := v2
+GOTO label7
+LABEL label6 : 
+v11 := v2
+v12 := v4
+LABEL label7 : 
+IF v5 >= v7 GOTO label8
+v13 := v5
+v14 := v7
+GOTO label9
+LABEL label8 : 
+v13 := v7
+v14 := v5
+LABEL label9 : 
+IF v6 >= v8 GOTO label10
+v15 := v8
+v16 := v6
+GOTO label11
+LABEL label10 : 
+v15 := v6
+v16 := v8
+LABEL label11 : 
+IF v13 >= v10 GOTO label13
+IF v14 <= v9 GOTO label13
+IF v16 >= v11 GOTO label13
+IF v15 > v12 GOTO label12
+LABEL label13 : 
+WRITE #0
+t11 := #0
+GOTO label14
+LABEL label12 : 
+WRITE #1
+t12 := #0
+LABEL label14 : 
+LABEL label3 : 
+RETURN #0

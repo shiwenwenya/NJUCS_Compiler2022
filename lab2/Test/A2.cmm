@@ -1,0 +1,17 @@
+struct Spoon {
+  int s_id;
+  int s_no;
+  int s_weight;
+};
+
+int mul(struct Spoon m_s) {
+  return m_s.s_no * m_s.s_weight;
+}
+
+int main() {
+  struct Spoon s;
+  s.s_id = 3;
+  s.s_no = 10;
+  add(s.s_id, s._no);
+  return 0;
+}

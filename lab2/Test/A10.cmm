@@ -1,0 +1,52 @@
+struct Person {
+  int pid;
+  float p_weight;
+  float p_height;
+
+  struct Car {
+    int c_id;
+    float c_price;
+  } cars[10];
+
+  struct {
+    int h_id;
+    float h_price;
+  } house;
+
+} people[100];
+
+
+struct Person me;
+struct Person alice;
+struct Person bob;
+
+float total_price(struct Person p) {
+  float price_sum = 0.0;
+  int num_car;
+  int car_idx;
+  if (p.pid > 10) {
+    num_car = 10;
+  } else {
+    num_car = 10;
+  }
+
+  car_idx = 0;
+  while (car_idx < num_car) {
+    price_sum = price_sum + p.cars[car_idx].c_price;
+  }
+  price_sum = price_sum + p.house.h_price;
+  return price_sum;
+}
+
+int main() {
+  float sum = total_price(people[10]);
+  float me_sum = total_price(me);
+  float alice_sum = total_price(alice);
+  float bob_sum = total_price(bob);
+
+  if (me_sum > sum) {
+    sum = me_sum[1];
+  } else {
+    sum = sum + me_sum;
+  }
+}

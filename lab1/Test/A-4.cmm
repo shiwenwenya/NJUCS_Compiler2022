@@ -1,0 +1,8 @@
+int i, j, k;
+int a[100];
+
+float f = 1.00;
+
+int hello() {
+  int a[100];
+}

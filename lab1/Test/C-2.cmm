@@ -1,0 +1,43 @@
+struct Data {
+  struct a {
+    int x, y, z = 1;
+  } s1;
+  struct b s2;
+  float f_1, f__2 = 2.2, _f3;
+  int a[10][11];
+} xs;
+
+struct Data comp() {
+  xs.s1.x = xs.s1.y * xs.s1.z + xs.s1.z;
+  xs.s2 = xs.s2;
+  xs.f_1 = xs.f__2;
+  if (xs.f_1 > 0.01) {
+    xs._f3 = xs._f3 * xs.f_1 / xs.f__2;
+    xs.f__2 = xs.f__2 + 1;
+  } else
+    xs.f_1 = xs.f__2;
+  
+  while (xs.s1.x > xs.s1.y) {
+    int i = 0;
+    while (i > xs.s1.z) {
+      xs._f3 = 0.1 * xs._f3;
+      xs.s1.z = xs.s1.z * 2;
+      if (xs.a[i][i]) {
+        return xs;
+      }
+      xs.s1.x = xs.s1.y / i;
+    }
+  }
+}
+
+int main() {
+  int _i = 0, _j = 0;
+  comp();
+  while (i < 10) {
+    while (j < 10) {
+      xs.a[i][j] = i * j + xs.s1.x;
+    }
+    xs.s1.y = xs.a[i][j];
+  }
+  return xs.a[2][3];
+}

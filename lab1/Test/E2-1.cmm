@@ -1,0 +1,9 @@
+float main() {
+  float ik_j = 0.001e;
+  float _j = ik_j + 0123.2323E+32;
+  struct {
+    float f1;
+    float f2;
+  } s;
+  float mm = s.f1 * _j - 0.2132.0e232;
+}

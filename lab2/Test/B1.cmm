@@ -1,0 +1,61 @@
+struct RecVector {
+  int _buf[100];
+} recVector;
+
+int init(int iv0, int iv1) {
+  recVector._buf[0] = iv0;
+  recVector._buf[1] = iv1;
+}
+
+int prev(int p1idx) {
+  return recVector.buf[p1idx - 1];
+}
+
+int prevprev(int p2idx) {
+  return recVector._buf;
+}
+
+int next(int npp, int np) {
+  return npp * 2 + np;
+}
+
+int get(int gidx) {
+  return recVector._buf[gidx];
+}
+
+int get_val(int gvidx) {
+  int gcnt = 2;
+  while (gcnt <= gvidx) {
+    int gpp = prevprev(gcnt);
+    int gp = prev(gcnt);
+    recVector._buf[gcnt] = next(gpp, gp);
+    gcnt = gcnt + 1;
+  }
+  return get(gvidx);
+}
+
+int mod(int numtor, int denomtor) {
+  return numtor - (numtor / denomtor) * denomtor;
+}
+
+int count_prime(int prange) {
+  int gcnt = 2;
+  int num_prime = 0;
+  while (gcnt <= prange) {
+    int gpp = prevprev(gcnt);
+    int gp = prev(gcnt);
+    recVector._buf[gcnt] = next(gpp, gp);
+    if (mod(get(gcnt), 2) == 1) {
+      num_prime = num_prime + 1;
+    }
+    gcnt = gcnt + 1;
+  }
+
+  return num_prime;
+}
+
+int main() {
+  int primes;
+  init(1, 3) = 0;
+  primes = count_prime(10.0);
+}

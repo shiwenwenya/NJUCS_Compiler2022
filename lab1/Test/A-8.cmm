@@ -1,0 +1,18 @@
+struct Oops say() {
+  struct Point {
+    int x;
+    int y;
+    int z;
+  } p1, p2;
+  return 0;
+}
+
+int;
+int;
+
+struct st {
+  int s1;
+  float s2;
+  struct st s3, s4;
+  int arr[10.0];
+};

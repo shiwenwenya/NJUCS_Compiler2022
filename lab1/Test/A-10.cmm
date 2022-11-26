@@ -1,0 +1,46 @@
+int a[10][10];
+int b[10][10];
+
+struct container {
+  int res;
+  int cnt;
+  float avg;
+  int sum[10];
+};
+
+int comp(int a[10][10], int b[10][10]) {
+  if (a[5][3] > a[2][1]) {
+    return a[0][0];
+  } else if (a[1][2] > b[0][1]) {
+    return b[1][1];
+  } else {
+    return b[4][4];
+  }
+}
+
+int cal() {
+  int i = 0;
+  int j = 0;
+  int res;
+  struct container ct;
+  while (i < 10) {
+    while (j < 10) {
+      res = res + a[i][j] * b[i][j];
+      j = j + 1;
+    }
+    i = i + 1;
+  }
+  ct.res = res;
+  ct.cnt = i * j;
+  ct.avg = ct.res / ct.cnt;
+  i = 0;
+  j = 0;
+  while (i < 10) {
+    ct.sum[i] = 0;
+    while (j < 10) {
+      ct.sum[i] = ct.sum[i,] + a[i][j] + b[i][j];
+      j = j + 1;
+    }
+    i = i + 1;
+  }
+}

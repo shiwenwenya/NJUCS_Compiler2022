@@ -1,0 +1,38 @@
+int _a0_b1(int arr[10], float x, int y) {
+  int i = 0, j = -1; int k = 1--2*3;
+  struct ss {
+    float ff;
+    int _i, _j, _k;
+    struct {
+      int a, b;
+    } s;
+  } s1, s2;
+
+  while (i < 10) {
+    if (a > b) {
+      return 1 + 2 / (a - b) + 3 * 3.14;
+    } else {
+      int tmp = a;
+      a = a + b;
+      b = b - tmp;
+      return a * b * tmp;
+    }
+    ;
+    i = i + 1;
+  }
+}
+
+int _F_o__0(struct { int i; int j; } ss, float f, int i) {
+  int a[100];
+  float b[100];
+  ss.i = 0h;
+  ss.j = 100;
+  while (true) {
+    a[ss.i] = b[ss.i];
+    ss.i = ss.i + 1;
+    if (ss.i >= 100) {
+      return a[ss.i - 1,];
+    }
+  }
+  ss.j = ss.i + ss.j;
+}
