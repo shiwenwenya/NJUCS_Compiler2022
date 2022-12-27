@@ -275,10 +275,7 @@ void insertHashTable(SymbolTableNode symbolTableNode, HashTableNode hashTableNod
         currentSymbolTableNode->controlScopeSymbolTableNode = symbolTableNode;
     }
     currentSymbolTableNode = hashTable[hash_pjw(symbolTableNode->name)].symbolTableNode;
-    if (currentSymbolTableNode != NULL)
-    {
-        currentSymbolTableNode->sameHashSymbolTableNode = symbolTableNode;
-    }
+    symbolTableNode->sameHashSymbolTableNode = currentSymbolTableNode;
     hashTable[hash_pjw(symbolTableNode->name)].symbolTableNode = symbolTableNode;
     return;
 }

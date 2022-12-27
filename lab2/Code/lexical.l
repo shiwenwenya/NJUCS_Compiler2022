@@ -97,7 +97,7 @@ EXCEERROR "= ="|"-"
 {LC} {yylval.node = createNewAbstractSyntaxTreeNode("LC","",2,yylineno);return LC;}
 {RC} {yylval.node = createNewAbstractSyntaxTreeNode("RC","",2,yylineno);return RC;}
 {SEMI} {yylval.node = createNewAbstractSyntaxTreeNode("SEMI","",2,yylineno);return SEMI;}
-{RELOP} {yylval.node = createNewAbstractSyntaxTreeNode("RELOP","",2,yylineno);return RELOP;} 
+{RELOP} {yylval.node = createNewAbstractSyntaxTreeNode("RELOP",yytext,2,yylineno);return RELOP;} 
 {COMMA} {yylval.node = createNewAbstractSyntaxTreeNode("COMMA","",2,yylineno);return COMMA;}
 {ASSIGNOP} {yylval.node = createNewAbstractSyntaxTreeNode("ASSIGNOP","",2,yylineno);return ASSIGNOP;}
 {PLUS} {yylval.node = createNewAbstractSyntaxTreeNode("PLUS","",2,yylineno);return PLUS;}

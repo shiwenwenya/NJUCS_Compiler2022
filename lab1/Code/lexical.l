@@ -71,12 +71,11 @@ COMMENT "//"
 OCTERROR 0([0-7]*)?[8-9]+{digit}*
 HEXERROR (0(x|X))(0|([1-9A-Fa-f][0-9A-Fa-f]*))?([g-zG-Z]+)({digit}|{letter})*
 FLOATERROR 	({digit}+{DOT}{digit}+|{digit}+{DOT}|{DOT}{digit}+)[Ee]
+EXCEERROR "= ="|"-"
 
 %%
 {WS} {}
-
 {STRUCT} {yylval.node = createNewAbstractSyntaxTreeNode("STRUCT","",2,yylineno);return STRUCT;} 
-
 
 {FLOAT} {yylval.node = createNewAbstractSyntaxTreeNode("FLOAT",yytext,2,yylineno);return FLOAT;}
 {INT} {yylval.node = createNewAbstractSyntaxTreeNode("INT",yytext,2,yylineno);return INT;}
@@ -98,7 +97,7 @@ FLOATERROR 	({digit}+{DOT}{digit}+|{digit}+{DOT}|{DOT}{digit}+)[Ee]
 {LC} {yylval.node = createNewAbstractSyntaxTreeNode("LC","",2,yylineno);return LC;}
 {RC} {yylval.node = createNewAbstractSyntaxTreeNode("RC","",2,yylineno);return RC;}
 {SEMI} {yylval.node = createNewAbstractSyntaxTreeNode("SEMI","",2,yylineno);return SEMI;}
-{RELOP} {yylval.node = createNewAbstractSyntaxTreeNode("RELOP","",2,yylineno);return RELOP;} 
+{RELOP} {yylval.node = createNewAbstractSyntaxTreeNode("RELOP",yytext,2,yylineno);return RELOP;} 
 {COMMA} {yylval.node = createNewAbstractSyntaxTreeNode("COMMA","",2,yylineno);return COMMA;}
 {ASSIGNOP} {yylval.node = createNewAbstractSyntaxTreeNode("ASSIGNOP","",2,yylineno);return ASSIGNOP;}
 {PLUS} {yylval.node = createNewAbstractSyntaxTreeNode("PLUS","",2,yylineno);return PLUS;}
