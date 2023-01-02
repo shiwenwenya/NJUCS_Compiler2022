@@ -33,21 +33,21 @@ static bool
 CopyPropagation_isForward(CopyPropagation *t)
 {
     // TODO: isForward?
-    TODO();
+    return true;
 }
 
 static Fact_def_use *
 CopyPropagation_newBoundaryFact(CopyPropagation *t, IR_function *func)
 {
     // TODO: return NEW(Fact_def_use, is_top?);
-    TODO();
+    return NEW(Fact_def_use, false);
 }
 
 static Fact_def_use *
 CopyPropagation_newInitialFact(CopyPropagation *t)
 {
     // TODO: return NEW(Fact_def_use, is_top?);
-    TODO();
+    return NEW(Fact_def_use, true);
 }
 
 static void
@@ -128,7 +128,8 @@ void CopyPropagation_transferStmt(CopyPropagation *t,
              * use is killed by new_def
              * VCALL(fact->def_to_use/use_to_def?, delete, use/new_def?);
              */
-            TODO();
+            VCALL(fact->def_to_use, delete, new_def);
+            VCALL(fact->use_to_def, delete, use);
         }
         if (VCALL(fact->use_to_def, exist, new_def))
         {
@@ -137,7 +138,8 @@ void CopyPropagation_transferStmt(CopyPropagation *t,
              * def is killed by new_def
              * VCALL(fact->def_to_use/use_to_def?, delete, def/new_def?);
              */
-            TODO();
+            VCALL(fact->use_to_def, delete, new_def);
+            VCALL(fact->def_to_use, delete, def);
         }
     }
     //// copy_gen
@@ -151,7 +153,8 @@ void CopyPropagation_transferStmt(CopyPropagation *t,
              * def is killed by new_def
              * VCALL(fact->def_to_use/use_to_def?, set, def/use?);
              */
-            TODO();
+            VCALL(fact->def_to_use, set, def, use);
+            VCALL(fact->use_to_def, set, use, def);
         }
     }
 }

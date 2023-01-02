@@ -62,20 +62,20 @@ void IR_optimize()
 
             //// Available Expressions Analysis
 
-            /* availableExpressionsAnalysis = NEW(AvailableExpressionsAnalysis);
-             AvailableExpressionsAnalysis_merge_common_expr(availableExpressionsAnalysis, func);
-             worklist_solver((DataflowAnalysis*)availableExpressionsAnalysis, func); // 将子类强制转化为父类
-             // VCALL(*availableExpressionsAnalysis, printResult, func);
-             AvailableExpressionsAnalysis_remove_available_expr_def(availableExpressionsAnalysis, func);
-             DELETE(availableExpressionsAnalysis);
+            availableExpressionsAnalysis = NEW(AvailableExpressionsAnalysis);
+            AvailableExpressionsAnalysis_merge_common_expr(availableExpressionsAnalysis, func);
+            worklist_solver((DataflowAnalysis *)availableExpressionsAnalysis, func); // 将子类强制转化为父类
+            // VCALL(*availableExpressionsAnalysis, printResult, func);
+            AvailableExpressionsAnalysis_remove_available_expr_def(availableExpressionsAnalysis, func);
+            DELETE(availableExpressionsAnalysis);
 
-             //// Copy Propagation
+            //// Copy Propagation
 
-             copyPropagation = NEW(CopyPropagation);
-             worklist_solver((DataflowAnalysis*)copyPropagation, func);
-             // VCALL(*copyPropagation, printResult, func);
-             CopyPropagation_replace_available_use_copy(copyPropagation, func);
-             DELETE(copyPropagation);*/
+            copyPropagation = NEW(CopyPropagation);
+            worklist_solver((DataflowAnalysis *)copyPropagation, func);
+            // VCALL(*copyPropagation, printResult, func);
+            CopyPropagation_replace_available_use_copy(copyPropagation, func);
+            DELETE(copyPropagation);
         }
 
         //// Constant Propagation (2nd)
