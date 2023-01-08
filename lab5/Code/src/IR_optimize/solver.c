@@ -91,17 +91,17 @@ static void initializeBackward(DataflowAnalysis *t, IR_function *func)
 {
     for_list(IR_block_ptr, i, func->blocks)
     {
-        void *new_in_fact = VCALL(*t, newInitialFact);
-        VCALL(*t, setInFact, i->val, new_in_fact);
+        void *new_out_fact = VCALL(*t, newInitialFact);
+        VCALL(*t, setOutFact, i->val, new_out_fact);
         if (i->val == func->exit)
         { // Exit为Boundary, 需要特殊处理
-            void *entry_out_fact = VCALL(*t, newBoundaryFact, func);
-            VCALL(*t, setOutFact, i->val, entry_out_fact);
+            void *exit_in_fact = VCALL(*t, newBoundaryFact, func);
+            VCALL(*t, setInFact, i->val, exit_in_fact);
         }
         else
         {
-            void *new_out_fact = VCALL(*t, newInitialFact);
-            VCALL(*t, setOutFact, i->val, new_out_fact);
+            void *new_in_fact = VCALL(*t, newInitialFact);
+            VCALL(*t, setInFact, i->val, new_in_fact);
         }
     }
 }
